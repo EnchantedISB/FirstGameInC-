@@ -1,0 +1,99 @@
+#include<iostream>
+#include<string>
+#include<vector>
+#include <random>
+
+int swingShot (char attackButton, int bodyparnum){
+    int damageDone = 0;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+  std::uniform_int_distribution<> chanceHit(0,4);
+
+  int chance = chanceHit(gen);
+
+  switch (bodyparnum){
+    case 1:
+    damageDone = 1;
+    break;
+    case 2:
+    if (chance >= 1){
+      damageDone = 2;
+    }
+    break;
+    case 3:
+    if (chance >= 2){
+      damageDone = 3;
+    }
+    break;
+    case 4:
+    if (chance >= 3){
+      damageDone = 4;
+    }
+    break;
+    if (chance == 4){
+      damageDone = 5;
+    }
+    break;
+  }
+
+  int finalDamage = damageDone * 2;
+  return finalDamage;
+    
+}
+
+//PLEASE READ EVERYTHING IN THE TERMINAL!!!
+ 
+int main() {
+    std::string heroName;
+    char attackBtnForSwing;
+    double hp = 100;
+    int bodypartnumber = 0;
+    
+    
+    auto printHP = [&hp]() {
+      std::cout << "   Your hp is: " << hp << "\n";
+    };
+    
+  std::cout << "Enter your hero name";
+  std::cin >> heroName;
+
+  std::cout << '\n' << "\n" << "Welcome to our first battle." << "\n" << "The Flame Mother";
+
+  printHP();
+
+
+  std::cout << "\n" << "Attack with your first attack!" << "\n" << "Your hp will always be shown on the right" << "\n";
+  std::cout << "Your first attack will be a regular swing with your gun, swing not shot." << "\n";
+  std::cout << "Type s on your keyboard" << "\n" << "\n";
+
+  
+
+  std::cin >> attackBtnForSwing; 
+
+  if (attackBtnForSwing != 's'){
+    std::cout << "You missed, your attack will not work now twin ✌️";
+    printHP();
+  }
+
+  std::cout << "Great!" << "\n" << "You have now chosen your attack!" << "\n" ;
+  std::cout <<"Now choose the area of the body, 1. Legs, 2. Arms, 3. Lower Chest, 4, Upper Chest, 5. Head." << "\n" << "\n" ;
+  
+  
+
+  std::cout << "Each point will have a different effect on the damage output and actually landing the hit" << "\n" << "\n" ;
+  
+  printHP();
+
+  std::cout << "Choose the part of the body by picking the number of the body part!" << "\n" << "\n" ;
+  std::cout << "The higher damage part you choose, the higher chance you miss.";
+
+  printHP();
+
+    std::cin >> bodypartnumber;
+  
+
+  return 0; 
+
+
+}
